@@ -57,5 +57,14 @@ bool Table::add(const myNode*        node,
 }
 
 
+void Table::advance( int count) {
+  if (count > 0) {
+    while (count -- > 0) ++_iter;
+
+  } else if (count < 0) {
+    while (count++ < 0) --_iter;
+  }
+}
+
 
 } // end namespace 
