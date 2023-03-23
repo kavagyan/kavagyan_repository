@@ -1,0 +1,30 @@
+name: clang-format
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install clang-format
+        run: sudo apt-get install clang-format-10
+
+      - name: Run clang-format
+        run: |
+          diff -u <(cat $(find . -name '*.cpp' -or -name '*.h') | clang-format -style=file) <(cat $(find . -name '*.cpp' -or -name '*.h'))
+
+      - name: Comment on pull request
+        uses: unsplash/comment-on-pr@v1
+        with:
+          message: |
+            ### Formatting Changes
+            ```
+            ${{ steps.format.outputs.diff }}
+            ```
+
