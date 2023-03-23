@@ -20,7 +20,7 @@ jobs:
           diff -u <(cat $(find . -name '*.cpp' -or -name '*.h') | clang-format -style=file) <(cat $(find . -name '*.cpp' -or -name '*.h'))
 
       - name: Comment on pull request
-        uses: unsplash/comment-on-pr@v2
+        #uses: unsplash/comment-on-pr@v2
         with:
           message: |
             ### Formatting Changes
