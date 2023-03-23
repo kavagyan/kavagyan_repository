@@ -8,7 +8,7 @@ static std::string getName(const myNode* n) {
 }
 
 Table::~Table() {
-  BOOST_FOREACH (TableInst* tableInst, tables) {
+  BOOST_FOREACH (TableInst          *tableInst, tables) {
     if (tableInst) {
       delete tableInst;
     }
